@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+  <title>Test Execution Evidences</title>
+  <style type="text/css">
+  @media print { 
+    .no-print, .no-print * { display: none !important; }
+  }
+  table.rd { align: center; margin: 0px auto; width: 80%; }
+  table.rd td:first-child { text-align: center; width: 4%; }
+  table.rd td:nth-child(2) { width: 88%; text-align: left; }
+  table.rd td:last-child { text-align: center; width: 8%; }
+  table.rd td { padding-left: 6px; padding-right: 6px; }
+  table.rd tr:first-child td { background-color: black; color: white; line-height: 26px; }
+  table.rd tr.passed td { background-color: green; color: white; }
+  table.rd tr.failed td { background-color: red; color: white; }
+  table.rd a { color: white; }
+  table.rd a:visited { color: lightgray; }
+  div.title h3 { padding: 0px; }
+  body { text-align: center; position: relative; }
+  a[name="top"] img { position: absolute; top: 0; right: 0; }
+  a[name="bottom"] img { position: absolute; bottom: 0; right: 0; }
+  p { padding-bottom: 10px; }
+  </style>
+  <script type="text/javascript">
+  var app = app ||(function(document) {
+    var ready = function(){
+      var summary = {"testcases":0, "teststeps":0, "passed":0};
+      var testcases = [];
+      var tables = document.body.getElementsByTagName('table');      
+      for(t = 0; t < tables.length; t++) {
+        var teststeps = [];
+        summary["testcases"]++;
+        var failed = false;
+        for(i=1; i < tables[t].rows.length; i++) {
+          summary["teststeps"]++;
+          var pass_fail = tables[t].rows[i].getAttribute('class') === 'passed' ? true:false;
+          if(!pass_fail == true)
+            failed = true;
+          tables[t].rows[i].cells[0].innerHTML = i;
+          teststeps.push({
+            "id": i, 
+            "description": tables[t].rows[i].cells[1].innerHTML,
+            "evidence": tables[t].rows[i].cells[2].innerHTML,
+            "pass_fail": pass_fail
+          });
+        }
+        if(!failed)
+          summary["passed"]++;
+        testcases.push({
+          "description": tables[t].rows[0].cells[1].innerHTML, 
+          "teststeps": teststeps
+        });
+      }
+      document.getElementById('summarytext').innerHTML = '<b>Summary</b> indicates that ' + summary["passed"] + ' out of ' + summary["testcases"] + ' test cases <span style="color: green;">passed</span> (' + Math.round(Number((100 * summary["passed"] / summary["testcases"]))) + '%)';
+    };
+    
+    document.onreadystatechange = function () {
+      var state = document.readyState
+      if (state == 'complete') {
+        ready();
+      }
+    };
+  });
+  </script>
+</head>
+<body>
+  <a name="top" href="#bottom" media="print" class="no-print"><img src="./images/bottom.png" alt="go to bottom" width="40" height="40"/></a>
+  <div class="header">&nbsp;</div>
+  <h1>Orange HRM</h1>
+  <p><em>A test case execution evidence report presented by test scenario</em></p>
+  <p id="summarytext">&nbsp;</p>
+  <div class="userlogin">
+    <div class="title">
+      <h3>User Log-in</h3>
+    </div>
+    <table class="rd">
+    <tbody>
+      <tr>
+        <td>No.</td>
+        <td>Test Step | User can log-in to Orange HRM</td>
+        <td media="print" class="no-print">Evidence</td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Open <a href="http://opensource.demo.orangehrmlive.com/" alt="Orange HRM">http://opensource.demo.orangehrmlive.com/</a> in the Web Browser</td>
+        <td><a href="./images/login-screen.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate Username and Password input fields and Login button</td>
+        <td><a href="./images/login-screen.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate User log in with wrong credentials</td>
+        <td><a href="./images/login-wrong-credentials.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User log in with suggested credentials</td>
+        <td><a href="./images/login.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate User is taken to the dashboard page</td>
+        <td><a href="./images/dashboard-menu.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  <div class="addemployee">
+    <div class="title">
+      <h3>PIM Employee Setup</h3>
+    </div>
+    <table class="rd">
+      <tbody>
+      <tr>
+        <td>No.</td>
+        <td>Test Step | User can add an employee</td>
+        <td media="print" class="no-print">Evidence</td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User navigates to Add Employee from the dashboard main menu</td>
+        <td><a href="./images/dashboard-menu.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate the Add Employee form fields</td>
+        <td><a href="./images/add-employee.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User edits Add Employee form</td>
+        <td><a href="./images/add-employee-edit.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate User saves Add Employee form successfully</td>
+        <td><a href="./images/add-employee-successful.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="listemployee">
+    <div class="title">
+      <h3>PIM List Employees</h3>
+    </div>
+    <table class="rd">
+      <tbody>
+      <tr>
+        <td>No.</td>
+        <td>Test Step | User can view the employee list</td>
+        <td media="print" class="no-print">Evidence</td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User navigates to Employee List from the dashboard main menu</td>
+        <td><a href="./images/dashboard-menu.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User edits Employee List form by entering an Employee Name</td>
+        <td><a href="./images/list-employee.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate User has filtered Employee List by Employee Name</td>
+        <td><a href="./images/list-employee-filtered.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="editemployee">
+    <div class="title">
+      <h3>PIM Edit Employee</h3>
+    </div>
+    <table class="rd">
+      <tbody>
+      <tr>
+        <td>No.</td>
+        <td>Test Step | User can view and edit an employee</td>
+        <td media="print" class="no-print">Evidence</td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User selects an employee from Employee's List</td>
+        <td><a href="./images/list-employee.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User views the employee's personal details</td>
+        <td><a href="./images/personal-details.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User edits the employee's personal details</td>
+        <td><a href="./images/personal-details-edited.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate that employee's personal details were updated</td>
+        <td><a href="./images/personal-details-updated.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User adds an attachments to employee's personal details</td>
+        <td><a href="./images/personal-details-attachment.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate that an attachments was added to employee's personal details</td>
+        <td><a href="./images/personal-details-image-uploaded.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User edits the employee's contact details</td>
+        <td><a href="./images/contact-details.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate that employee's contact details were updated</td>
+        <td><a href="./images/contact-details-edited.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User assigns an emergency contact to the employee</td>
+        <td><a href="./images/emergency-contact-added.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate that employee's emergency contact details were updated</td>
+        <td><a href="./images/emergency-contact-details-updated.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User assigns dependents to the employee</td>
+        <td><a href="./images/dependents.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate that employee's dependents were updated</td>
+        <td><a href="./images/dependents-updated.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User assigns immigration records to the employee</td>
+        <td><a href="./images/immigration.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate that employee's immigration records were updated</td>
+        <td><a href="./images/immigration-updated.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User edits/activates a job for the employee</td>
+        <td><a href="./images/job.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate that employee's job details were updated</td>
+        <td><a href="./images/job-updated.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User terminates the job for the employee</td>
+        <td><a href="./images/job-terminate-reason.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate that the employee's job was terminated</td>
+        <td><a href="./images/job-terminated.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User assigns a salary for the employee</td>
+        <td><a href="./images/salary.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate that the employee's salary was updated</td>
+        <td><a href="./images/salary-updated.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td>21</td>
+        <td>User assigns supervisor and subordinates to the employee</td>
+        <td><a href="./images/report-to.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>Validate that the employee's supervisor and subordinates were updated</td>
+        <td><a href="./images/report-to-updated.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User edits the employee's qualifications</td>
+        <td><a href="./images/qualification.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="failed">
+        <td></td>
+        <td>Validate that the employee's qualifications were updated</td>
+        <td><a href="./images/qualifications-updated.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="passed">
+        <td></td>
+        <td>User assigns the employee's memberships</td>
+        <td><a href="./images/membership.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      <tr class="failed">
+        <td></td>
+        <td>Validate that the employee's memberships were updated</td>
+        <td><a href="./images/memberships-updated.png" alt="" media="print" class="no-print">View</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer">&nbsp;</div>
+  <a name="bottom" href="#top" media="print" class="no-print"><img src="./images/top.png" alt="go to top" width="40" height="40"/></a>
+  </body>
+  <script type="text/javascript">
+    app(document);
+  </script>
+ </html>
